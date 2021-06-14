@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+    {% for web in web %}
+        <div class="post">
+            <div class="date">
+                {{ web.published_date }}
+            </div>
+            <h2><a href="">{{ web.title }}</a></h2>
+            <p>{{ web.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
