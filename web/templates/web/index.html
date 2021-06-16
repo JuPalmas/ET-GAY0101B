@@ -1,13 +1,16 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-    {% for web in web %}
-        <div class="post">
-            <div class="date">
-                {{ web.published_date }}
-            </div>
-            <h2><a href="">{{ web.title }}</a></h2>
-            <p>{{ web.text|linebreaksbr }}</p>
-        </div>
-    {% endfor %}
+    <h1>INDEX</h1>
+    <ul class="sidebar-nav">
+
+        ...
+    
+       {% if user.is_authenticated %}
+         <li>User: {{ user.get_username }}</li>
+         <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+       {% else %}
+         <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+       {% endif %} 
+      </ul>
 {% endblock %}
