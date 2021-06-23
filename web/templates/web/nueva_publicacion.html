@@ -1,0 +1,16 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+    <h1>INDEX</h1>
+    <ul class="sidebar-nav">
+
+        ...
+    
+       {% if user.is_authenticated %}
+         <h1>Publicar un producto</h1>
+         
+       {% else %}
+         <h1>Debes ingresar para publicar un producto, hazlo <a href="accounts/login">Aquí</a> o también puedes <a href="{% url 'register' %}">Registrarte</a></h1>
+       {% endif %} 
+      </ul>
+{% endblock %}
