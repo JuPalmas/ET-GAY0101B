@@ -1,0 +1,31 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+
+<table class="table table-striped table-hover table-responsive-sm">
+    <tr>
+        <th>Autor: </th>
+        <th>Titulo: </th>
+        <th>Precio: </th>
+        <th>Imagen: </th>
+        <th>Descripción: </th>
+        <th>Dirección: </th>
+        <th>Comuna: </th>
+        <th>Región: </th>
+
+    </tr>
+    {% for p in publicaciones %}
+    <tr>
+        <td>{{ p.autor | title }}</td>
+        <td>{{ p.titulo | title }}</td>
+        <td>${{ p.precio | title }}</td>
+        <td>{{ p.imagen }}</td>
+        <td>{{ p.text | title }}</td>
+        <td>{{ p.direccion | title }}</td>
+        <td>{{ p.comuna | title }}</td>
+        <td>{{ p.region | title }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

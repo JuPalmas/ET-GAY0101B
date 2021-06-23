@@ -2,9 +2,11 @@ from django.db import models
 from django.utils import timezone
 
 class Post(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    autor = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     titulo = models.CharField(max_length=200)
-    text = models.TextField()
+    precio = models.IntegerField()
+    imagen = models.ImageField(null=True)
+    descripcion = models.TextField()
     regiones = (
         ('I', 'Arica y Parinacota'),
         ('II', 'Antofagasta'),

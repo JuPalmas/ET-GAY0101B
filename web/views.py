@@ -1,11 +1,28 @@
+from web.models import Post
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
+from .forms import PostForm
 
 def index(request):
-    return render(request, 'web/index.html', {})
+    return render(request, 'web/index.html')
+
+def crear_publicacion(request):
+
+    data = {
+        'form': PostForm()
+    }
+    if request.method == 'POST':
+        formulario = PostForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Publicación creada con éxito"
+        else:
+            data["form"] = formulario
+            data["mensaje"] = "Ha ocurrido un error en la creación"
+    return render(request, "web/nueva_publicacion.html", data)
 
 def register(request):
     data = {
@@ -30,7 +47,12 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['username' ,'first_name','last_name',"email","password1","password2"]
 
-def publicar(request):
-    return render(request, 'web/nueva_publicacion.html', {})
 
+def listar_publicaciones(request):
+    publicaciones = Post.objects.all()
+
+    data = {
+        'publicaciones' : publicaciones
+    }
+    return render(request, 'web/listar.html', data)
     
