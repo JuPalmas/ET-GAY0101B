@@ -14,20 +14,53 @@
               <div class="card">
                 <div class="card-body">
                   <h2>Crear publicación</h2>
-                  <form action="" method="post" enctype="multipart/form-data">
+                  <form method="POST" action="">
                     {% csrf_token %}
-                    {{ form | crispy }}
-
-
-                  <div class="d-flex justify-content-end">
-                    <input type="reset" value="Cancelar" class="btn btn-secondary">
-                    &nbsp;
-                    <input type="submit" value="Crear" class="btn btn-primary">            
-                </div>    
-              </form>  
-              {{ mensaje }}  
+                      <hr>
+                       <select {{ form.autor }}
+                      <div class="input-group mb-3">
+                          <span class="input-group">Titulo: </span>
+                          <input type="text" class="form-control" placeholder=""   {{ form.titulo }}
+                      </div>
+                      <div class="input-group mb-3">
+                              <span class="input-group">Precio: </span>
+                            <input class="form-control" placeholder=""   {{ form.precio }}
+                      </div>
+                      <div class="input-group mb-3">
+                              <span class="input-group">Imagen: </span>
+                            <input {{ form.imagen}}
+                      </div>
+                      <div class="input-group mb-3">
+                              <span class="input-group">Descripción: </span>
+                            <input type="text" class="form-control" placeholder=""   {{ form.descripcion }}
+                      </div>
+                      <div class="input-group mb-3">
+                              <span class="input-group">Region: </span>
+                            <select {{ form.region }}
+                      </div>
+                      <div class="input-group mb-3">
+                              <span class="input-group">Comuna: </span>
+                            <input type="text" class="form-control" placeholder=""   {{ form.comuna }}
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group">Dirección: </span>
+                        <input type="text" class="form-control" placeholder=""   {{ form.direccion }}
+                      </div>
+                      <br>
+                      {% if form.errors %}
+                      <p style="color: red;">{{ mensaje }}</p>
+                      {% endif %}      
+                      <div class="d-flex justify-content-end">
+                        <input type="reset" value="Cancelar" class="btn btn-secondary">
+                        &nbsp;
+                        <input type="submit" value="Crear" class="btn btn-primary">            
+                      </div>
+                    
+                </form> 
+                
             </div>
           </div>
+           
         </div>
       </div>
       

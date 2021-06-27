@@ -9,21 +9,6 @@ from .forms import PostForm
 def index(request):
     return render(request, 'web/index.html')
 
-def crear_publicacion(request):
-
-    data = {
-        'form': PostForm()
-    }
-    if request.method == 'POST':
-        formulario = PostForm(data=request.POST, files=request.FILES)
-        if formulario.is_valid():
-            formulario.save()
-            data["mensaje"] = "Publicación creada con éxito"
-        else:
-            data["form"] = formulario
-            data["mensaje"] = "Ha ocurrido un error en la creación"
-    return render(request, "web/nueva_publicacion.html", data)
-
 def register(request):
     data = {
         'form':CustomUserCreationForm()
@@ -47,6 +32,20 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['username' ,'first_name','last_name',"email","password1","password2"]
 
+def crear_publicacion(request):
+
+    data = {
+        'form': PostForm()
+    }
+    if request.method == 'POST':
+        formulario = PostForm(data=request.POST, files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            data["mensaje"] = "Publicación creada con éxito"
+        else:
+            data["form"] = formulario
+            data["mensaje"] = "Ha ocurrido un error en la creación"
+    return render(request, "web/nueva_publicacion.html", data)
 
 def listar_publicaciones(request):
     publicaciones = Post.objects.all()
