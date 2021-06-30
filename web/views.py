@@ -1,5 +1,5 @@
 from web.models import Post
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
@@ -56,3 +56,24 @@ def listar_publicaciones(request):
     }
     return render(request, 'web/listar.html', data)
     
+
+def modificar_publicacion(request,id):
+
+    post = get_object_or_404(Post, id=id)
+    data = {
+        'form': PostForm(instance=post)
+    }
+
+    if request.method == 'POST':
+        formulario = PostForm(data=request.POST, instance=post,files=request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to='listar_publicaciones')
+        data['form'] = formulario
+    return render(request, 'web/editar_publicacion.html',data)
+
+def eliminar_publicacion(request, id):
+
+    post = get_object_or_404(Post, id=id)
+    post.delete()
+    return redirect(to='listar_publicaciones')

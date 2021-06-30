@@ -13,6 +13,7 @@
         <th>Dirección: </th>
         <th>Comuna: </th>
         <th>Región: </th>
+        <th>Acciones: </th>
 
     </tr>
     {% for p in publicaciones %}
@@ -25,6 +26,10 @@
         <td>{{ p.direccion | title }}</td>
         <td>{{ p.comuna | title }}</td>
         <td>{{ p.region | title }}</td>
+        <td>
+        <a href="{% url 'modificar_publicacion' p.id %}" class="btn btn-info btn-sm">Modificar</a>
+        <a href="{% url 'eliminar_publicacion' p.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
     </tr>
     {% endfor %}
 </table>
