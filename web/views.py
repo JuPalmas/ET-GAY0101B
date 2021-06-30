@@ -1,3 +1,4 @@
+from django.views import generic
 from web.models import Post
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
@@ -5,6 +6,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from django.contrib import messages
 from .forms import PostForm
+
 
 def index(request):
     return render(request, 'web/index.html')
@@ -77,3 +79,6 @@ def eliminar_publicacion(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect(to='listar_publicaciones')
+
+class PostDetailView(generic.DetailView):
+    model = Post

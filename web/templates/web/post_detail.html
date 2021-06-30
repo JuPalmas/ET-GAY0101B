@@ -1,0 +1,32 @@
+{% extends 'web/base.html' %}
+
+{% block content %}
+<div class="row" >
+    <div class="col-sm" > 
+        <div >
+            <div>
+                <div class="row">
+                    <div class="col-md-7" width="700px" height="700px" >
+                        <div class="align-self-center">                        
+                            <img class="img border border-5 rounded mx-auto d-block"src="{{ post.imagen.url}}">
+                        </div>    
+                    </div> 
+                    <div class="col-md-5">
+                        <div class="jumbotron" style="float:center;text-align:center;">
+                            <h1>{{ post.titulo }}</h1>
+                            <hr>
+                            <br>
+                            <h1>$ {{ post.precio }}</h2>
+                            <br>   
+                            <h4> Ubicación: {{ post.direccion }}, {{ post.comuna }},{{ post.region }}</h2> <br>
+                            <div class="col-12 " style="text-align: justy;">        
+                                <pre style="font-family: Arial, Helvetica, sans-serif;">{{ post.descripcion }}</pre>
+                            </div>                              
+                        </div>  
+                    </div>                      
+                </div>                               
+            </div>   
+        </div>         
+    </div>
+</div>  
+{% endblock %}

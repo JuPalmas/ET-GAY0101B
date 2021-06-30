@@ -1,14 +1,27 @@
 {% extends 'web/base.html' %}
 
 {% block content %}
-    <h1>INDEX</h1>
-    <ul class="sidebar-nav">    
-    
-       {% if user.is_authenticated %}
-         <li>User: {{ user.get_username }}</li>
-         <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-       {% else %}
-         <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-       {% endif %} 
-      </ul>
+    <div class="container-fluid">
+      <div class="row align-items-center bg-info h-150" style="height: 800px;">
+        <div class="col" >
+          <h1 class="text-center">Bienvenido a AgroWeb®</h1>
+          <hr>
+          <h2 class="text-center">El portal web para compra y venta de productos agricolas de calidad más cercano a ti</h2>
+        </div>
+        <div class="col">
+          <img src="/media/mapa-tiendas.jpg" class="img-fluid border border-5 rounded-pill mx-auto d-block">
+        </div>
+      </div>
+      <hr>
+      <div class="row align-items-center h-120" style="height: 800px; background-color: mediumspringgreen;">
+        <div class="col" >
+          <h1 class="text-center">Únete y comienza a vender tus productos inmediatamente</h1>
+          <hr>
+          <h2 class="text-center">Solamente debes registrarte, si aún no lo estás puedes hacerlo <a href="{% url 'register' %}">Aquí</a></h2>
+        </div>
+        <div class="col">
+          <img src="/media/personaje-frutas.jpg" class="img-fluid border border-5 rounded-pill mx-auto d-block">
+        </div>
+      </div>
+    </div>
 {% endblock %}

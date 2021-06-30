@@ -1,6 +1,7 @@
 from django.contrib.auth import login
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -8,5 +9,6 @@ urlpatterns = [
     path('nueva-publicacion', views.crear_publicacion, name='nueva_publicacion'),
     path('listar-publicaciones', views.listar_publicaciones, name='listar_publicaciones'),
     path('modificar-publicacion/<id>/',views.modificar_publicacion,name='modificar_publicacion'),
-    path('eliminar-publicacion/<id>/', views.eliminar_publicacion, name='eliminar_publicacion')
+    path('eliminar-publicacion/<id>/', views.eliminar_publicacion, name='eliminar_publicacion'),
+    path('publicacion/<int:pk>/', views.PostDetailView.as_view(), name='publicacion-detail'),
 ]
